@@ -63,7 +63,7 @@ In addition, your final script should both print the analysis to the terminal an
 
 ## PyPoll Instructions
 
-![alt=""](Vote_counting.png)
+![alt=""](Images/Vote_counting.png)
 
 In this challenge, you are tasked with helping a small, rural town modernize its vote counting process.
 
