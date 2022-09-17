@@ -1,5 +1,6 @@
+# PyBank
+
 # Import the os module
-from distutils import text_file
 import os
 # Import the module for reading CSV files
 import csv
@@ -25,28 +26,44 @@ profloss = []
 month_count = []
 net_profloss = []
 profloss_ch = []
-incr = []
-decr = []
+sum_profloss_ch = 0
+incr = 0
+decr = 0
 
 for row in csvreader:
 
 # The total number of months included in the dataset
-    months.append(row[0])
+    if row [0] not in months:
+        months.append(row[0])
     month_count = len(months)
 
 # The net total amount of "Profit/Losses" over the entire period
-    net_profloss.append(float(row[1]))
+    profloss.append(float(row[1]))
+    for p in profloss:
+        net_profloss = net_profloss + p
 
 # The changes in "Profit/Losses" over the entire period, and then the average of those changes
-    # profloss_ch = 
+for i in range(len(profloss)-1):
+    profloss_ch.append(profloss[i + 1] - profloss[i])
+print(profloss_ch)
+
+for p in profloss_ch:
+    sum_profloss_ch = sum_profloss_ch + p
+average_profloss_ch = sum_profloss_ch / len(profloss_ch)
 
 # The greatest increase in profits (date and amount) over the entire period
-    # incr =
+for p in profloss_ch:
+    if p > incr:
+        incr = p
+print(p)
 
 # The greatest decrease in profits (date and amount) over the entire period
-    # decr =
+for p in profloss_ch:
+    if p > decr:
+        decr = p
+print(p)
 
-
+# print to terminal
 # The 'analysis folder' contains your text file that has the results from your analysis.
 analysis = f'\
 Financial Analysis\n\
