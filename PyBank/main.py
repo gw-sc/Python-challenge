@@ -69,10 +69,10 @@ analysis = f'\
 Financial Analysis\n\
 ----------------------------\n\
 Total Months: {month_count} \n\
-Total Amount: ${} \n\
-Average Change: ${} \n\
-Greatest Increase in Profits: ${} \n\
-Greatest Decrease in Profits: ${} \n'
+Total Amount: ${profloss} \n\
+Average Change: ${average_profloss_ch} \n\
+Greatest Increase in Profits: ${incr} \n\
+Greatest Decrease in Profits: ${decr} \n'
 
 print(analysis)
 
