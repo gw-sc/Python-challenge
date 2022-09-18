@@ -1,10 +1,10 @@
 # Pypoll
 
 # Import modules os, csv
-import os, csv
+import os
+import csv
 
 csvpath = os.path.join('Resources', 'election_data.csv')
-
 
 
 # The total number of votes cast
@@ -18,22 +18,21 @@ csvpath = os.path.join('Resources', 'election_data.csv')
 # The winner of the election based on popular vote.
 
 
+# analysis = f'\
+# Election Results\n\
+# -------------------------\n\
+# Total Votes: {}\n\
+# -------------------------\n\
+# '': {}% ({})\n\
+# '': {}% ({})\n\
+# '': {}% ({})\n\
+# -------------------------\n\
+# Winner: ''\n\
+# ------------------------- \n'
 
-analysis = f'\
-Election Results\n\
--------------------------\n\
-Total Votes: {}\n\
--------------------------\n\
-'': {}% ({})\n\
-'': {}% ({})\n\
-'': {}% ({})\n\
--------------------------\n\
-Winner: ''\n\
-------------------------- \n'
+# print(analysis)
 
-print(analysis)
-
-output_path = os.path.join(('Analysis', 'PyPoll_Analysis.md'), w)
-with open (output_path, w) as f:
-    f.write((analysis))
-output_path.close()
+# output_path = os.path.join(('Analysis', 'PyPoll_Analysis.md'), 'w')
+# with open(output_path, 'w') as f:
+#     f.write((analysis))
+# output_path.close()
