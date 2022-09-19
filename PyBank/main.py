@@ -18,8 +18,11 @@ greatest_decrease = 0
 # increase_month = 0
 # decrease_month = 0
 
-csvpath = os.path.join('PyBank', 'Resources', 'budget_data.csv')
+
 # csvpath = "./Resources/budget_data.csv"
+# (os.getcwd(),.....)
+csvpath = os.path.join('PyBank', 'Resources', 'budget_data.csv')
+
 output_path = os.path.join('PyBank', 'Analysis', 'PyBank_Analysis.md')
 
 # Improved reading using csv module
