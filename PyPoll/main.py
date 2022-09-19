@@ -24,6 +24,7 @@ def sort(i):
 
 candidate_summary = []
 candidates = []
+total_votes = 0
 
 with open(csvpath, 'r') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
@@ -34,37 +35,41 @@ with open(csvpath, 'r') as csvfile:
     for column in csvreader:
         func()
     total_votes = sum(i[1] for i in candidate_summary)
-print(total_votes)
+    print(total_votes)
 
 # A complete list of candidates who received votes
-for row in candidate_summary:
-    print('{candidates}'.format(candidates=row[0]))
+# for row in candidate_summary:
+#     print('{candidates}'.format(candidates=row[0]))
 
-    # The percentage of votes each candidate won
-for i in candidate_summary:
-    i[2] = round((i[1] / total_votes) * 100, 3)
-candidate_summary.sort(key=sort, reverse=True)
-Winner = (candidate_summary[0])
-print(Winner)
+# The percentage of votes each candidate won
+    for i in candidate_summary:
+        i[2] = round((i[1] / total_votes) * 100, 3)
+    # print('{candidates}: {vote_percentage}%'.format(candidates=row[0], vote_percentage=row[2]))
+
 # The total number of votes each candidate won
+    # for row in candidate_summary:
+    #     print('{candidate}: {candidate_votes}'.format(candidate=row[0], candidate_votes=row[1]))
 
 # The winner of the election based on popular vote.
+    candidate_summary.sort(key=sort, reverse=True)
+    Winner = (candidate_summary[0])
+# print(Winner)
 
-analysis = f'\
-Election Results\n\
--------------------------\n\
-Total Votes: {total_votes}\n\
--------------------------\n\
-'': {}% ({})\n\
-'': {}% ({})\n\
-'': {}% ({})\n\
--------------------------\n\
-Winner: ''\n\
-------------------------- \n'
+print('Election Results')
+print('-------------------------')
+print('Total Votes: {total_votes}'.format(total_votes=total_votes))
+print('-------------------------')
+for row in candidate_summary:
+    print('{candidate}: {percent}% ({votes})'.format(
+        candidate=row[0],
+        percent=row[2],
+        votes=row[1]
+    ))
+print('-------------------------')
+print('Winner: {winner}'.format(winner=Winner[0]))
+print('-------------------------')
 
-# In addition, your final script should both print the analysis to the terminal and export a text file with the results.
-# print(analysis)
-
-# with open(output_path, 'w') as f:
-#     f.write((analysis))
-# output_path.close()
+# In addition, your final script should both print the analysis to the terminal and export a text file with the results. print(analysis) # with open(output_path, 'w') as f:
+with open(output_path, 'w') as f:
+    f.write((analysis))
+output_path.close()
