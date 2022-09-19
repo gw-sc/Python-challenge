@@ -18,11 +18,11 @@ greatest_decrease = 0
 # increase_month = 0
 # decrease_month = 0
 
-
+# Input path
 # csvpath = "./Resources/budget_data.csv"
 # (os.getcwd(),.....)
 csvpath = os.path.join('PyBank', 'Resources', 'budget_data.csv')
-
+# Outhput path
 output_path = os.path.join('PyBank', 'Analysis', 'PyBank_Analysis.md')
 
 # Improved reading using csv module
@@ -31,10 +31,8 @@ output_path = os.path.join('PyBank', 'Analysis', 'PyBank_Analysis.md')
 with open(csvpath, 'r') as csvfile:
     # CSV reader specifies delimiter and variable that holds contents
     csvreader = csv.reader(csvfile, delimiter=",")
+    header = next(csvreader)  # skip the headers
     # print(csvreader)
-
-    # skip the headers
-    header = next(csvreader)
 
     for row in csvreader:
         profitloss.append([row[0], float(row[1])])
@@ -96,9 +94,8 @@ Financial Analysis\n\
     Greatest Increase in Profits: {increase_month} ${greatest_increase} \n\
     Greatest Decrease in Profits: {decrease_month} ${greatest_decrease} \n"
 
-print(analysis)
-
 # In addition, your final script should both print the analysis to the terminal and export a text file with the results.
+print(analysis)
 
 with open(output_path, 'w') as f:
     f.write((analysis))
