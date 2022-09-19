@@ -31,6 +31,8 @@ with open(csvpath, 'r') as csvfile:
     header = next(csvreader)
 
     for row in csvreader:
+        profitloss.append(float(row[1]))
+
         # The total number of months included in the dataset
         if row[0] not in months:
             months.append(row[0])
@@ -38,31 +40,32 @@ with open(csvpath, 'r') as csvfile:
     print(month_count)
 
 # The net total amount of "Profit/Losses" over the entire period
-    profitloss.append(float(row[1]))
+    # for row in csvreader:
+    #     profitloss.append(float(row[1]))
     for p in profitloss:
         total_profitloss = total_profitloss + p
     print(total_profitloss)
 
-# # The changes in "Profit/Losses" over the entire period, and then the average of those changes
-# for i in range(len(profitloss)-1):
-#     profitloss_change.append(profitloss[i + 1] - profitloss[i])
-# print(profitloss_change)
+# The changes in "Profit/Losses" over the entire period, and then the average of those changes
+    for i in range(len(profitloss)-1):
+        profitloss_change.append(profitloss[i + 1] - profitloss[i])
 
-# # for p in profloss_ch:
-# sum_profitloss_change = sum_profitloss_change + p
-# average_profitloss_change = sum_profitloss_change / len(profitloss_change)
+    for p in profitloss_change:
+        sum_profitloss_change = sum_profitloss_change + p
+    average_profitloss_change = sum_profitloss_change / len(profitloss_change)
+    print(average_profitloss_change)
 
-# # The greatest increase in profits (date and amount) over the entire period
-# for p in profitloss_change:
-#     if p > greatest_increase:
-#         greatest_increase = p
-# print(p)
+# The greatest increase in profits (date and amount) over the entire period
+    for p in profitloss_change:
+        if p > greatest_increase:
+            greatest_increase = p
+    print(p)
 
-# # The greatest decrease in profits (date and amount) over the entire period
-# for p in profitloss_change:
-#     if p > greatest_decrease:
-#         greatest_decrease = p
-# print(p)
+    # # The greatest decrease in profits (date and amount) over the entire period
+    # for p in profitloss_change:
+    #     if p > greatest_decrease:
+    #         greatest_decrease = p
+    # print(p)
 
 # # print to terminal
 # # The 'analysis folder' contains the text file that has the results from the analysis.
@@ -70,10 +73,10 @@ with open(csvpath, 'r') as csvfile:
 # Financial Analysis\n\
 # ----------------------------\n\
 # Total Months: {month_count} \n\
-# Total Amount: ${profitloss} \n\
+# Total Amount: ${total_profitloss} \n\
 # Average Change: ${average_profitloss_change} \n\
-# Greatest Increase in Profits: ${greatest_increase} \n\
-# Greatest Decrease in Profits: ${greatest_decrease} \n'
+# Greatest Increase in Profits: {month} ${greatest_increase} \n\
+# Greatest Decrease in Profits: {month} ${greatest_decrease} \n'
 
 # print(analysis)
 
