@@ -15,6 +15,8 @@ profitloss_change = []
 sum_profitloss_change = 0
 greatest_increase = 0
 greatest_decrease = 0
+# increase_month = 0
+# decrease_month = 0
 
 csvpath = os.path.join('PyBank', 'Resources', 'budget_data.csv')
 # csvpath = "./Resources/budget_data.csv"
@@ -61,28 +63,38 @@ with open(csvpath, 'r') as csvfile:
         if p > greatest_increase:
             greatest_increase = p
     # print(greatest_increase)
-
-    # The greatest decrease in profits (date and amount) over the entire period
+    # find the month adjacent
+    increase_month = 0
     p = 0
-    for p in profitloss_change:
-        if p < greatest_decrease:
-            greatest_decrease = p
-    print(p)
+    for i, p in enumerate(profitloss_change):
+        if p > greatest_increase:
+            greatest_increase = p
+            increase_month = i
+    print(increase_month)
 
-# print to terminal
+    # # The greatest decrease in profits (date and amount) over the entire period
+    # p = 0
+    # for p in profitloss_change:
+    #     if p < greatest_decrease:
+    #         greatest_decrease = p
+   # print(greatest_decrease)
+   # find the month adjacent
+
+    #    print(decrease_month)
+
 # The 'analysis folder' contains the text file that has the results from the analysis.
-analysis = f"\
-Financial Analysis\n\
-----------------------------\n\
-Total Months: {month_count} \n\
-Total Amount: ${total_profitloss} \n\
-Average Change: ${average_profitloss_change} \n\
-Greatest Increase in Profits: 'greatest_increase[0]' ${greatest_increase} \n\
-Greatest Decrease in Profits: 'greatest_decrease[0]' ${greatest_decrease} \n"
+# analysis = f"\
+# Financial Analysis\n\
+#     - ---------------------------\n\
+#     Total Months: {month_count} \n\
+#     Total Amount: ${total_profitloss} \n\
+#     Average Change: ${average_profitloss_change} \n\
+#     Greatest Increase in Profits: {} ${greatest_increase} \n\
+#     Greatest Decrease in Profits: {} ${greatest_decrease} \n"
 
-print(analysis)
+# print(analysis)
 
-# # In addition, your final script should both print the analysis to the terminal and export a text file with the results.
+# In addition, your final script should both print the analysis to the terminal and export a text file with the results.
 # output_path = os.path.join(('Analysis', 'PyBank_Analysis.md'), 'w')
 # with open(output_path, 'w') as f:
 #     f.write((analysis))
