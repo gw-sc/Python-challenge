@@ -77,6 +77,7 @@ with open(csvpath, 'r') as csvfile:
 
 # print(analysis)
 
+# # In addition, your final script should both print the analysis to the terminal and export a text file with the results.
 # output_path = os.path.join(('Analysis', 'PyBank_Analysis.md'), 'w')
 # with open(output_path, 'w') as f:
 #     f.write((analysis))
