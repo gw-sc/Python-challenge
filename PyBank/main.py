@@ -99,4 +99,4 @@ print(analysis)
 
 with open(output_path, 'w') as f:
     f.write((analysis))
-output_path.close()
+# output_path.close()

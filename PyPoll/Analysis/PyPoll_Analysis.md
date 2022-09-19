@@ -1,3 +1,10 @@
-# Python-challenge
-DAV Module 3 Python Challenge
-PyPoll Analysis
+Election Results
+-------------------------
+Total Votes: 369711
+-------------------------
+Diana DeGette: 73.812% (272892)
+Charles Casper Stockham: 23.049% (85213)
+Raymon Anthony Doane: 3.139% (11606)
+-------------------------
+Winner: Diana DeGette
+-------------------------
