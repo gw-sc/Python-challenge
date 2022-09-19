@@ -37,14 +37,14 @@ with open(csvpath, 'r') as csvfile:
         if row[0] not in months:
             months.append(row[0])
             month_count = len(months)
-    print(month_count)
+    # print(month_count)
 
 # The net total amount of "Profit/Losses" over the entire period
     # for row in csvreader:
     #     profitloss.append(float(row[1]))
     for p in profitloss:
         total_profitloss = total_profitloss + p
-    print(total_profitloss)
+    # print(total_profitloss)
 
 # The changes in "Profit/Losses" over the entire period, and then the average of those changes
     for i in range(len(profitloss)-1):
@@ -53,32 +53,34 @@ with open(csvpath, 'r') as csvfile:
     for p in profitloss_change:
         sum_profitloss_change = sum_profitloss_change + p
     average_profitloss_change = sum_profitloss_change / len(profitloss_change)
-    print(average_profitloss_change)
+    # print(average_profitloss_change)
 
 # The greatest increase in profits (date and amount) over the entire period
+    p = 0
     for p in profitloss_change:
         if p > greatest_increase:
             greatest_increase = p
+    # print(greatest_increase)
+
+    # The greatest decrease in profits (date and amount) over the entire period
+    p = 0
+    for p in profitloss_change:
+        if p < greatest_decrease:
+            greatest_decrease = p
     print(p)
 
-    # # The greatest decrease in profits (date and amount) over the entire period
-    # for p in profitloss_change:
-    #     if p > greatest_decrease:
-    #         greatest_decrease = p
-    # print(p)
+# print to terminal
+# The 'analysis folder' contains the text file that has the results from the analysis.
+analysis = f"\
+Financial Analysis\n\
+----------------------------\n\
+Total Months: {month_count} \n\
+Total Amount: ${total_profitloss} \n\
+Average Change: ${average_profitloss_change} \n\
+Greatest Increase in Profits: 'greatest_increase[0]' ${greatest_increase} \n\
+Greatest Decrease in Profits: 'greatest_decrease[0]' ${greatest_decrease} \n"
 
-# # print to terminal
-# # The 'analysis folder' contains the text file that has the results from the analysis.
-# analysis = f'\
-# Financial Analysis\n\
-# ----------------------------\n\
-# Total Months: {month_count} \n\
-# Total Amount: ${total_profitloss} \n\
-# Average Change: ${average_profitloss_change} \n\
-# Greatest Increase in Profits: {month} ${greatest_increase} \n\
-# Greatest Decrease in Profits: {month} ${greatest_decrease} \n'
-
-# print(analysis)
+print(analysis)
 
 # # In addition, your final script should both print the analysis to the terminal and export a text file with the results.
 # output_path = os.path.join(('Analysis', 'PyBank_Analysis.md'), 'w')
