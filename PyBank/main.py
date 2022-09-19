@@ -56,7 +56,7 @@ with open(csvpath, 'r') as csvfile:
         sum_profitloss_change = sum_profitloss_change + p
     average_profitloss_change = sum_profitloss_change / len(profitloss_change)
     average_profitloss_change = round(average_profitloss_change, 2)
-    print(average_profitloss_change)
+    # print(average_profitloss_change)
 
 # The greatest increase in profits (date and amount) over the entire period
     p = 0
@@ -68,13 +68,15 @@ with open(csvpath, 'r') as csvfile:
     # find the month adjacent
     # print(months)
     data = []
+    # list_profitloss = []
     for row in csvreader:
-        data.append(row)
-    list_profitloss = [i[0] for i in str(data)]
+        data.append(row, row[0])
+        list_profitloss = [i[0] for i in data]
+    # print(list_profitloss)
     if greatest_increase in list_profitloss:
         for i in range(0, len(data)):
             greatest_increase == data[i][1]
-        print(data[i])
+        print(data)
 
     # else:
     #     print("nope, try again🧐")
