@@ -55,32 +55,50 @@ with open(csvpath, 'r') as csvfile:
     for p in profitloss_change:
         sum_profitloss_change = sum_profitloss_change + p
     average_profitloss_change = sum_profitloss_change / len(profitloss_change)
-    # print(average_profitloss_change)
+    average_profitloss_change = round(average_profitloss_change, 2)
+    print(average_profitloss_change)
 
 # The greatest increase in profits (date and amount) over the entire period
     p = 0
+    increase_month = 0
     for p in profitloss_change:
         if p > greatest_increase:
             greatest_increase = p
     # print(greatest_increase)
     # find the month adjacent
-    increase_month = 0
+    # print(months)
+    data = []
+    for row in csvreader:
+        data.append(row)
+    list_profitloss = [i[0] for i in str(data)]
+    if greatest_increase in list_profitloss:
+        for i in range(0, len(data)):
+            greatest_increase == data[i][1]
+        print(data[i])
+
+    # else:
+    #     print("nope, try again🧐")
+    # increase_month = months[i + 1][0]
+    # for i, p in enumerate(profitloss_change):
+    #     if p > greatest_increase:
+    #         greatest_increase = p
+    #         increase_month = i
+    # print(increase_month)
+
+    # The greatest decrease in profits (date and amount) over the entire period
     p = 0
-    for i, p in enumerate(profitloss_change):
-        if p > greatest_increase:
-            greatest_increase = p
-            increase_month = i
-    print(increase_month)
-
-    # # The greatest decrease in profits (date and amount) over the entire period
-    # p = 0
-    # for p in profitloss_change:
-    #     if p < greatest_decrease:
+    decrease_month = 0
+    for p in profitloss_change:
+        if p < greatest_decrease:
+            greatest_decrease = p
+    # print(greatest_decrease)
+    # # find the month adjacent
+    # decrease_month = months[i + 1][0]
+    # for i, p in enumerate(profitloss_change):
+    #     if p > greatest_decrease:
     #         greatest_decrease = p
-   # print(greatest_decrease)
-   # find the month adjacent
-
-    #    print(decrease_month)
+    #         decrease_month = i
+    # print(decrease_month)
 
 # The 'analysis folder' contains the text file that has the results from the analysis.
 # analysis = f"\
