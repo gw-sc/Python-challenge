@@ -1,3 +1,7 @@
-# Python-challenge
-DAV Module 3 Python Challenge
-PyBank Analysis
+Financial Analysis
+    - ---------------------------
+    Total Months: 86 
+    Total Amount: $22564198.0 
+    Average Change: $-8311.11 
+    Greatest Increase in Profits: Aug-16 $1862002.0 
+    Greatest Decrease in Profits: Feb-14 $-1825558.0 

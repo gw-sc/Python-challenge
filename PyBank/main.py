@@ -20,6 +20,7 @@ greatest_decrease = 0
 
 csvpath = os.path.join('PyBank', 'Resources', 'budget_data.csv')
 # csvpath = "./Resources/budget_data.csv"
+output_path = os.path.join('PyBank', 'Analysis', 'PyBank_Analysis.md')
 
 # Improved reading using csv module
 # open csvpath as csvfile in read mode
@@ -33,7 +34,7 @@ with open(csvpath, 'r') as csvfile:
     header = next(csvreader)
 
     for row in csvreader:
-        profitloss.append(float(row[1]))
+        profitloss.append([row[0], float(row[1])])
 
         # The total number of months included in the dataset
         if row[0] not in months:
@@ -45,15 +46,16 @@ with open(csvpath, 'r') as csvfile:
     # for row in csvreader:
     #     profitloss.append(float(row[1]))
     for p in profitloss:
-        total_profitloss = total_profitloss + p
-    # print(total_profitloss)
+        total_profitloss = total_profitloss + p[1]
+    print(total_profitloss)
 
 # The changes in "Profit/Losses" over the entire period, and then the average of those changes
     for i in range(len(profitloss)-1):
-        profitloss_change.append(profitloss[i + 1] - profitloss[i])
+        profitloss_change.append(
+            [profitloss[i+1][0], profitloss[i + 1][1] - profitloss[i][1]])
 
     for p in profitloss_change:
-        sum_profitloss_change = sum_profitloss_change + p
+        sum_profitloss_change = sum_profitloss_change + p[1]
     average_profitloss_change = sum_profitloss_change / len(profitloss_change)
     average_profitloss_change = round(average_profitloss_change, 2)
     # print(average_profitloss_change)
@@ -62,60 +64,39 @@ with open(csvpath, 'r') as csvfile:
     p = 0
     increase_month = 0
     for p in profitloss_change:
-        if p > greatest_increase:
-            greatest_increase = p
-    # print(greatest_increase)
+        if p[1] > greatest_increase:
+            greatest_increase = p[1]
+            increase_month = p[0]
+
+    print(greatest_increase)
+    print(increase_month)
     # find the month adjacent
     # print(months)
-    data = []
-    # list_profitloss = []
-    for row in csvreader:
-        data.append(row, row[0])
-        list_profitloss = [i[0] for i in data]
-    # print(list_profitloss)
-    if greatest_increase in list_profitloss:
-        for i in range(0, len(data)):
-            greatest_increase == data[i][1]
-        print(data)
-
-    # else:
-    #     print("nope, try again🧐")
-    # increase_month = months[i + 1][0]
-    # for i, p in enumerate(profitloss_change):
-    #     if p > greatest_increase:
-    #         greatest_increase = p
-    #         increase_month = i
-    # print(increase_month)
 
     # The greatest decrease in profits (date and amount) over the entire period
     p = 0
     decrease_month = 0
     for p in profitloss_change:
-        if p < greatest_decrease:
-            greatest_decrease = p
-    # print(greatest_decrease)
-    # # find the month adjacent
-    # decrease_month = months[i + 1][0]
-    # for i, p in enumerate(profitloss_change):
-    #     if p > greatest_decrease:
-    #         greatest_decrease = p
-    #         decrease_month = i
-    # print(decrease_month)
+        if p[1] < greatest_decrease:
+            greatest_decrease = p[1]
+            decrease_month = p[0]
+    print(greatest_decrease)
+    print(decrease_month)
 
 # The 'analysis folder' contains the text file that has the results from the analysis.
-# analysis = f"\
-# Financial Analysis\n\
-#     - ---------------------------\n\
-#     Total Months: {month_count} \n\
-#     Total Amount: ${total_profitloss} \n\
-#     Average Change: ${average_profitloss_change} \n\
-#     Greatest Increase in Profits: {} ${greatest_increase} \n\
-#     Greatest Decrease in Profits: {} ${greatest_decrease} \n"
+analysis = f"\
+Financial Analysis\n\
+    ----------------------------\n\
+    Total Months: {month_count} \n\
+    Total Amount: ${total_profitloss} \n\
+    Average Change: ${average_profitloss_change} \n\
+    Greatest Increase in Profits: {increase_month} ${greatest_increase} \n\
+    Greatest Decrease in Profits: {decrease_month} ${greatest_decrease} \n"
 
-# print(analysis)
+print(analysis)
 
 # In addition, your final script should both print the analysis to the terminal and export a text file with the results.
-# output_path = os.path.join(('Analysis', 'PyBank_Analysis.md'), 'w')
-# with open(output_path, 'w') as f:
-#     f.write((analysis))
-# output_path.close()
+
+with open(output_path, 'w') as f:
+    f.write((analysis))
+output_path.close()
